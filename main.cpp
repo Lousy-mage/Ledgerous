@@ -2,9 +2,9 @@
 using namespace std;
 
 class Wallet{
-    int Balance;
+    double Balance;
     public:
-    int getBalance(){
+    double getBalance(){
         return Balance;
     }
     void setBalance(int amount){
@@ -13,14 +13,21 @@ class Wallet{
 };
 
 class Transaction: public Wallet{
-    int income;
-    int expense;
+    double income;
+    double expense;
+    double total;
     public:
-    void addIncome(int amount){
+    void addIncome(double amount){
         income=amount;
+        calcTotal();
     }
-    void addExpense(int amount){
-        expense=amount;
+    void addExpense(double amount){
+        expense=(-1*amount);
+        calcTotal();
+    }
+    void calcTotal(){
+            total=income+expense;
+            setBalance(total);
     }
 }transactions;
 
