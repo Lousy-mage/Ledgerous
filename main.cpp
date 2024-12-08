@@ -7,23 +7,29 @@ year, etc. Also the transactions can be classified with tags like "food", "trave
 
 */
 #include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
 
-class Wallet{
-    double Balance;
-    public:
-    double getBalance(){
-        return Balance;
+class Wallet {
+    double balance;
+public:
+    Wallet(){
+        balance = 0.0;
     }
-    void setBalance(int amount){
-        Balance=amount;
+    double getBalance() {
+        return balance;
+    }
+    void updateBalance(double amount) {
+        balance += amount;
     }
 };
 
-class Transaction: public Wallet{
+class Transaction{
     double income;
     double expense;
     double total;
+    
     public:
     void addIncome(double amount){
         income=amount;
