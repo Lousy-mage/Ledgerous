@@ -1,3 +1,11 @@
+/*
+This is ledgerous.
+
+Here you have a complete account of what you do with your money. The transactions are recorded as either 
+income or expense. The transactions can be viewed filtered according to time period like week, month, day,
+year, etc. Also the transactions can be classified with tags like "food", "travel", "grocery", etc.
+
+*/
 #include <iostream>
 using namespace std;
 
