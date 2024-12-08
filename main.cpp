@@ -25,25 +25,26 @@ public:
     }
 };
 
-class Transaction{
-    double income;
-    double expense;
-    double total;
-    
-    public:
-    void addIncome(double amount){
-        income=amount;
-        calcTotal();
+class Transaction {
+    string type; // "income" or "expense"
+    string tag;
+    double amount;
+public:
+    Transaction(string type, string tag, double amount){
+         
+        this->type=type;
+        this->tag=tag;
+        this->amount=amount;
     }
-    void addExpense(double amount){
-        expense=(-1*amount);
-        calcTotal();
+
+    string getType() const { return type; }
+    string getTag() const { return tag; }
+    double getAmount() const { return amount; }
+
+    void display() const {
+        cout << type << ": " << amount << " (Tag: " << tag << ")" << endl;
     }
-    void calcTotal(){
-            total=income+expense;
-            setBalance(total);
-    }
-}transactions;
+};
 
 
 int main(){

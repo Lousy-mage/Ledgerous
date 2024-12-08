@@ -7,7 +7,7 @@ class Wallet {
     double balance;
 public:
     Wallet() : balance(0.0) {}
-    
+
     double getBalance() {
         return balance;
     }
