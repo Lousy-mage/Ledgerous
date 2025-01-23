@@ -1,71 +1,66 @@
-/*
-This is ledgerous.
-
-Here you have a complete account of what you do with your money. The transactions are recorded as either 
-income or expense. The transactions can be viewed filtered according to time period like week, month, day,
-year, etc. Also the transactions can be classified with tags like "food", "travel", "grocery", etc.
-
-*/
 #include <iostream>
-#include <vector>
+#include <cstdlib>
 #include <string>
-using namespace std;
+#include <iomanip>
+#include <fstream>
 
-class Wallet {
+class Wallet{
     double balance;
-public:
-    Wallet(){
-        balance = 0.0;
-    }
-    double getBalance() {
-        return balance;
-    }
-    void updateBalance(double amount) {
-        balance += amount;
-    }
+    
+    public:
+
+        Wallet(double initialBalance=0.0 ) : balance(initialBalance){}
+
+        double getBalance() const {
+            return balance;
+        }
+
+        void updateBalance(double amount){
+            balance += amount;
+        }
+
+        void displayBalance() const {
+            std::cout<<"Current Balance: "<<std::fixed << std::setprecision(2)<< balance<< std::endl;
+        }
+
 };
 
-class Transaction {
-    string type; // "income" or "expense"
-    string tag;
-    double amount;
-public:
-    Transaction(string type, string tag, double amount){
-         
-        this->type=type;
-        this->tag=tag;
-        this->amount=amount;
-    }
+class Transactions: public Wallet{
+    public:
+        Transactions(double initialBalance = 0.0) : Wallet(initialBalance) {}
 
-    string getType() const { return type; }
-    string getTag() const { return tag; }
-    double getAmount() const { return amount; }
+        void income(double amount){
+            if(amount < 0.0){
+                std::cout<<"Income Cannot be negative"<<std::endl;
+                return;
+            }
+            else updateBalance(amount);
+        }
 
-    void display() const {
-        cout << type << ": " << amount << " (Tag: " << tag << ")" << endl;
-    }
+        void expense(double amount){
+            if(getBalance() < amount){
+                std::cout<<"Insufficient Balance!\n";
+                return;
+            }
+            if(amount > 0.0) updateBalance(-amount);
+            else updateBalance(amount);
+        }
+
 };
 
+class Ledgerous: public Transactions {
+        
+    public:
+        Transactions userWallet;
+        
+
+};
 
 int main(){
-
-    int opt;
-    do{
-        cout<<"Welcome to Ledgerous!"<<endl;
-        cout<<"1. View Balance"<<endl;
-        cout<<"2. View Transaction Hitory"<<endl;
-        cout<<"3. Add Transaction"<<endl;
-        cout<<"Choose an Option to Continue: "<<endl;
-        cin>>opt;
-
-        switch(opt){
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-        }
-    }while(opt);
-    return 0;
+    Ledgerous user;
+    user.displayBalance();
+    user.expense(100);
+    user.income(200);
+    user.expense(300);
+    user.displayBalance();
 }
