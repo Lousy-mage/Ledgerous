@@ -94,13 +94,13 @@ class Transactions: public Wallet{
             }
 
             std::cout << "\nTransaction History\n";
-            std::cout << std::setfill('-') << std::setw(70) << "-" << std::endl;
+            std::cout << std::setfill('-') << std::setw(65) << "-" << std::endl;
             std::cout << std::setfill(' ');
             std::cout << std::left << std::setw(20) << "Date/Time"
                       << std::setw(10) << "Type"
                       << std::right << std::setw(15) << "Amount"
                       << std::setw(20) << "Balance After" << std::endl;
-            std::cout << std::setfill('-') << std::setw(70) << "-" << std::endl;
+            std::cout << std::setfill('-') << std::setw(65) << "-" << std::endl;
             std::cout << std::setfill(' ');
 
             Transaction t;
@@ -128,13 +128,15 @@ class Transactions: public Wallet{
                     std::cout << "\033[31m";
                 }
 
-                std::cout << std:: left << std::setw(20) << t.timestamp
+                std::cout << std::left << std::setw(20) << t.timestamp
                           << std::setw(10) << t.type
                           << std::right << std::setw(15) << std::fixed << std::setprecision(2) << t.amount
                           << std::setw(20) << t.BalanceAfter << std::endl;
                 
                 std::cout << "\033[0m" ;
+
             }
+                std::cout << std::setfill('-') << std::setw(65) << "-" << std::endl;
             file.close();
         }
 
@@ -206,6 +208,7 @@ void menu(Ledgerous* user){
             case 4:
                 user->displayTransactions();
                 std::cout << "\n";
+                user->displayBalance();
                 system("pause");
                 break;
             case 5:
