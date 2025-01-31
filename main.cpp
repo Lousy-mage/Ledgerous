@@ -86,6 +86,7 @@ class Transactions: public Wallet{
             }
         }
 
+        
         void displayTransactions () const {
             std::ifstream file("transactions.txt");
             if (!file.is_open()) {
@@ -206,10 +207,26 @@ void menu(Ledgerous* user){
                 usleep(2);
                 break;
             case 4:
-                user->displayTransactions();
-                std::cout << "\n";
-                user->displayBalance();
-                system("pause");
+                int option;
+                std::cout<<"[1] View all transactions\n";
+                std::cout<<"[2] View transactions by date\n\n";
+                std::cin>>option;
+
+                switch (option)
+                {
+                case 1:
+                        
+                    user->displayTransactions();
+                    std::cout << "\n";
+                    user->displayBalance();
+                    system("pause");
+                    break;
+                
+                case 2:
+                    break;
+                default:
+                    break;
+                }
                 break;
             case 5:
                 // usleep(100);
