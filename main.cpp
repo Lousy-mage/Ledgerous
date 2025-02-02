@@ -207,26 +207,11 @@ void menu(Ledgerous* user){
                 usleep(2);
                 break;
             case 4:
-                int option;
-                std::cout<<"[1] View all transactions\n";
-                std::cout<<"[2] View transactions by date\n\n";
-                std::cin>>option;
-
-                switch (option)
-                {
-                case 1:
-                        
-                    user->displayTransactions();
-                    std::cout << "\n";
-                    user->displayBalance();
-                    system("pause");
-                    break;
-                
-                case 2:
-                    break;
-                default:
-                    break;
-                }
+                user->displayTransactions();
+                std::cout << "\n";
+                user->displayBalance();
+                system("pause");
+                break;
                 break;
             case 5:
                 // usleep(100);
